@@ -3,6 +3,7 @@ node_modules/
 *.lock
 package-lock.json
 dist
+lib
 .temp
 .idea
 yarn-erroe.log
