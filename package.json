@@ -1,6 +1,6 @@
 {
-  "name": "react-toast",
-  "version": "1.0.0",
+  "name": "rc-toaster",
+  "version": "0.1.0",
   "description": "react component of toast",
   "main": "index.js",
   "module": "lib/index.es.js",
