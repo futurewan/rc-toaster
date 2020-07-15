@@ -7,3 +7,5 @@ lib
 .temp
 .idea
 yarn-erroe.log
+lib/
+es/
