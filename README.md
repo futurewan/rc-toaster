@@ -25,7 +25,7 @@ Toast.text({
 ```
 ## API
 
-| 属性 | 说明 | 类型 | 默认值 |
+| property | explain | type | default |
 | :---------- | :--- | :--- | :--- |
 | content | show contents | string | - |
 | mask | show mask | boolean | true |
