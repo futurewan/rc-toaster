@@ -5,15 +5,14 @@ import classnames from 'classnames';
 export default class Toast extends React.Component {
   static propTypes = {
     duration: PropTypes.number,
-    onClose: PropTypes.func,
+    onCloseCallBack: PropTypes.func,
     children: PropTypes.any
     // update: PropTypes.bool,
     // closeIcon: PropTypes.node
   };
 
   static defaultProps = {
-    onEnd() {},
-    onClose() {},
+    onCloseCallBack() {},
     duration: 3
   };
   componentDidMount() {

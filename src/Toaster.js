@@ -9,10 +9,12 @@ import './index.css';
 class Toaster extends React.Component {
   static propTypes = {
     prefixCls: PropTypes.string,
-    mask: PropTypes.bool
+    mask: PropTypes.bool,
+    duration:PropTypes.number
   };
   static defaultProps = {
-    prefixCls: 'w-toast'
+    prefixCls: 'w-toast',
+    duration: 3
   };
 
   state = {
@@ -20,7 +22,6 @@ class Toaster extends React.Component {
   };
 
   add = notice => {
-    console.log('notice', notice);
     this.setState(preState => ({
       notice
     }));
@@ -40,8 +41,7 @@ class Toaster extends React.Component {
       [`${props.prefixCls}-mask`]: notice.mask,
       [`${props.prefixCls}-no-mask`]: !notice.mask
     };
-    console.log('props', props);
-    const onClose = createChainedFunction(this.remove.bind(this), notice.onCloseBack);
+    const onClose = createChainedFunction(this.remove.bind(this), notice.onClose);
     return (
       <div className={classnames(className)}>
         {notice.content && (
@@ -82,12 +82,8 @@ Toaster.createToast = function(properties, callback) {
   function ref(toaster) {
     if (called) return;
     called = true;
-    console.log('props', props);
-    // toaster.add(props,callback);
-
     callback({
       toast(toastProps) {
-        console.log('add');
         toaster.add(toastProps);
       },
       component: toaster,
@@ -112,15 +108,14 @@ export default {
       throw new TypeError('The parameter is incorrect, requiring a string or object');
     }
     return Toaster.createToast({}, toaster => {
-      const { onClose, ...props } = toastConfig;
+      const { onCloseCallBack, ...props } = toastConfig;
       toaster.toast({
         mask: true,
         ...props,
-        onCloseBack: () => {
-          if (onClose) {
-            onClose();
+        onClose: () => {
+          if (typeof onCloseCallBack === 'function') {
+            onCloseCallBack();
           }
-          console.log('close');
           toaster.destroy();
         }
       });
